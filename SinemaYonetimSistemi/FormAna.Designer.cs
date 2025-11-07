@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem2 = new ListViewItem("Salon1(ÖN)");
+            ListViewItem listViewItem1 = new ListViewItem("Salon1(ÖN)");
             label1 = new Label();
             tabControlSinemaYonetim = new TabControl();
             tabPageBiletSatis = new TabPage();
@@ -96,7 +96,7 @@
             label25 = new Label();
             label6 = new Label();
             label5 = new Label();
-            labelYeniSalonNo = new Label();
+            labelYeniSalonKapasite = new Label();
             label3 = new Label();
             label2 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -178,7 +178,7 @@
             // 
             // listView1
             // 
-            listView1.Items.AddRange(new ListViewItem[] { listViewItem2 });
+            listView1.Items.AddRange(new ListViewItem[] { listViewItem1 });
             listView1.Location = new Point(9, 6);
             listView1.Name = "listView1";
             listView1.Size = new Size(480, 61);
@@ -718,7 +718,7 @@
             groupBoxYeniSalonEkle.Controls.Add(label25);
             groupBoxYeniSalonEkle.Controls.Add(label6);
             groupBoxYeniSalonEkle.Controls.Add(label5);
-            groupBoxYeniSalonEkle.Controls.Add(labelYeniSalonNo);
+            groupBoxYeniSalonEkle.Controls.Add(labelYeniSalonKapasite);
             groupBoxYeniSalonEkle.Controls.Add(label3);
             groupBoxYeniSalonEkle.Controls.Add(label2);
             groupBoxYeniSalonEkle.Location = new Point(13, 9);
@@ -745,7 +745,9 @@
             numericUpDownSalonSiraKoltukSayisi.Size = new Size(44, 22);
             numericUpDownSalonSiraKoltukSayisi.TabIndex = 6;
             numericUpDownSalonSiraKoltukSayisi.TextAlign = HorizontalAlignment.Center;
-            numericUpDownSalonSiraKoltukSayisi.KeyDown += numericUpDownFiyat_KeyDown;
+            numericUpDownSalonSiraKoltukSayisi.ValueChanged += numericUpDownSalonSiraSayisi_ValueChanged;
+            numericUpDownSalonSiraKoltukSayisi.KeyDown += numericUpDownSalonFiyatHesapla_KeyDown;
+            numericUpDownSalonSiraKoltukSayisi.Leave += numericUpDownSalonSiraSayisi_Leave;
             // 
             // numericUpDownSalonSiraSayisi
             // 
@@ -755,7 +757,9 @@
             numericUpDownSalonSiraSayisi.Size = new Size(44, 22);
             numericUpDownSalonSiraSayisi.TabIndex = 6;
             numericUpDownSalonSiraSayisi.TextAlign = HorizontalAlignment.Center;
-            numericUpDownSalonSiraSayisi.KeyDown += numericUpDownFiyat_KeyDown;
+            numericUpDownSalonSiraSayisi.ValueChanged += numericUpDownSalonSiraSayisi_ValueChanged;
+            numericUpDownSalonSiraSayisi.KeyDown += numericUpDownSalonFiyatHesapla_KeyDown;
+            numericUpDownSalonSiraSayisi.Leave += numericUpDownSalonSiraSayisi_Leave;
             // 
             // buttonYeniSalonEkle
             // 
@@ -801,14 +805,15 @@
             label5.TabIndex = 2;
             label5.Text = ":";
             // 
-            // labelYeniSalonNo
+            // labelYeniSalonKapasite
             // 
-            labelYeniSalonNo.AutoSize = true;
-            labelYeniSalonNo.Location = new Point(239, 69);
-            labelYeniSalonNo.Name = "labelYeniSalonNo";
-            labelYeniSalonNo.Size = new Size(17, 14);
-            labelYeniSalonNo.TabIndex = 1;
-            labelYeniSalonNo.Text = "[]";
+            labelYeniSalonKapasite.AutoSize = true;
+            labelYeniSalonKapasite.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            labelYeniSalonKapasite.Location = new Point(239, 69);
+            labelYeniSalonKapasite.Name = "labelYeniSalonKapasite";
+            labelYeniSalonKapasite.Size = new Size(17, 13);
+            labelYeniSalonKapasite.TabIndex = 1;
+            labelYeniSalonKapasite.Text = "[]";
             // 
             // label3
             // 
@@ -897,7 +902,7 @@
         private Button buttonYeniSalonEkle;
         private Label label6;
         private Label label5;
-        private Label labelYeniSalonNo;
+        private Label labelYeniSalonKapasite;
         private Label label3;
         private Label label2;
         private GroupBox groupBoxYeniFilmEkle;

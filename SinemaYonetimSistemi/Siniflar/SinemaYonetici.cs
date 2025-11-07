@@ -196,11 +196,11 @@ namespace SinemaYonetimSistemi.Siniflar
                     using (var streamOkuyucu = new StreamReader(dosyaYolu, Encoding.UTF8))
                     {
                         string satir = string.Empty;
-                        Salon salon = new Salon();
                         while ((satir = streamOkuyucu.ReadLine()) != null)
                         {
                             if (string.IsNullOrWhiteSpace(satir))
                                 continue;
+                            Salon salon = new Salon();
                             var satirParcalari = satir.Split(';', StringSplitOptions.RemoveEmptyEntries);
                             foreach (var parca in satirParcalari)
                             {

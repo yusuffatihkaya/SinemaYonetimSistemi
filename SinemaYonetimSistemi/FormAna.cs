@@ -33,6 +33,7 @@ namespace SinemaYonetimSistemi
         private void salonlariYukle()
         {
             _salonlar = _sinema.SalonlariOku();
+            listBoxSalonlar.Items.Clear();
             foreach (Salon salon in _salonlar)
             {
                 listBoxSalonlar.Items.Add(salon.SalonAdi);
@@ -74,7 +75,7 @@ namespace SinemaYonetimSistemi
         }
 
         private void buttonFilmEkle_Click(object sender, EventArgs e)
-        {            
+        {
             if (!_kontrol.KontrolString(textBoxFilmAdi.Text, "Film Adý"))
             {
                 return;
@@ -157,6 +158,15 @@ namespace SinemaYonetimSistemi
             }
         }
 
+        private void numericUpDownSalonFiyatHesapla_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
+            {
+                e.SuppressKeyPress = true;
+            }
+            SalonKapasiteHesapla();
+        }
+
         private void buttonSalonSil_Click(object sender, EventArgs e)
         {
             int itemIndex = listBoxSalonlar.SelectedIndex;
@@ -180,6 +190,23 @@ namespace SinemaYonetimSistemi
             _sinema.SalonEkle(yeniSalon);
             salonlariYukle();
             MessageBox.Show("Yeni Salon [" + yeniSalon.SalonAdi + "] kaydedildi.");
+        }
+
+        private void numericUpDownSalonSiraSayisi_ValueChanged(object sender, EventArgs e)
+        {
+            SalonKapasiteHesapla();
+        }
+
+        private void SalonKapasiteHesapla()
+        {
+            int siraSayisi = Convert.ToInt32(numericUpDownSalonSiraSayisi.Value);
+            int siraKoltukSayisi = Convert.ToInt32(numericUpDownSalonSiraKoltukSayisi.Value);
+            labelYeniSalonKapasite.Text = "Kapasite : (" + siraSayisi.ToString() + "X" + siraKoltukSayisi.ToString() + ") = " + (siraSayisi * siraKoltukSayisi);
+        }
+
+        private void numericUpDownSalonSiraSayisi_Leave(object sender, EventArgs e)
+        {
+            SalonKapasiteHesapla();
         }
     }
 }
