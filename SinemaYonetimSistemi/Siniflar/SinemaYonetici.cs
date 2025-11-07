@@ -34,11 +34,11 @@ namespace SinemaYonetimSistemi.Siniflar
                     using (var streamOkuyucu = new StreamReader(dosyaYolu, Encoding.UTF8))
                     {
                         string satir = string.Empty;
-                        Film film = new Film();
                         while ((satir = streamOkuyucu.ReadLine()) != null)
                         {
                             if (string.IsNullOrWhiteSpace(satir))
                                 continue;
+                            Film film = new Film();
                             var satirParcalari = satir.Split(';', StringSplitOptions.RemoveEmptyEntries);
                             foreach (var parca in satirParcalari)
                             {
@@ -47,6 +47,7 @@ namespace SinemaYonetimSistemi.Siniflar
                                 if (ozellikAdi == "FilmID")
                                 {
                                     film.FilmID = Convert.ToInt32(ozellikDeger);
+                                    film.FilmSeanslar = FilmSeansOku(film.FilmID);
                                 }
                                 if (ozellikAdi == "FilmAdi")
                                 {
@@ -72,10 +73,7 @@ namespace SinemaYonetimSistemi.Siniflar
                                 {
                                     film.FilmFotograf = ozellikDeger;
                                 }
-                                if (ozellikDeger == "FilmSalon")
-                                {
-                                    //
-                                }
+                                
                                 if (ozellikAdi == "SalonID")
                                 {
                                     //
@@ -102,10 +100,9 @@ namespace SinemaYonetimSistemi.Siniflar
             catch  { }
             return filmler;
         }
-
-        public List<int> FilmSeansOku(int filmID)
+        public List<string> FilmSeansOku(int filmID)
         {
-            var seanslar = new List<int>();
+            var seanslar = new List<string>();
             try
             {
                 string calismaDizini = AppDomain.CurrentDomain.BaseDirectory;
@@ -121,8 +118,14 @@ namespace SinemaYonetimSistemi.Siniflar
                             if (string.IsNullOrWhiteSpace(satir))
                                 continue;
                             var satirParcalari = satir.Split(';', StringSplitOptions.RemoveEmptyEntries);
-                            Console.WriteLine(satirParcalari);
-                            ///
+                            for (int i = 0; i < satirParcalari.Length; i++)
+                            {
+                                int satirFilmID = Convert.ToInt32(satirParcalari[0].Split('=', 2)[1]);
+                                if (satirFilmID == filmID && i > 0)
+                                {
+                                    seanslar.Add(satirParcalari[i]);
+                                }
+                            }
                         }
                     }
                 }
@@ -141,7 +144,7 @@ namespace SinemaYonetimSistemi.Siniflar
                 using (var streamYazici = new StreamWriter(dosyaYolu, append: true, Encoding.UTF8))
                 {
                     string yeniSatir = "FilmID=" + _yeniFilmID.ToString() + ";FilmAdi=" + yeniFilm.FilmAdi.ToString() + ";FilmFiyat=" + yeniFilm.FilmFiyat.ToString() + ";FilmKategori=" + yeniFilm.FilmKategori
-                        + ";FilmSure=" + yeniFilm.FilmSure.ToString() + ";FilmImdb=" + yeniFilm.FilmImdb.ToString() + ";FilmFotograf=" + yeniFilm.FilmFotograf.ToString() + ";";
+                        + ";FilmSure=" + yeniFilm.FilmSure.ToString() + ";FilmImdb=" + yeniFilm.FilmImdb.ToString() + ";FilmFotograf=" + yeniFilm.FilmFotograf.ToString() + ";FilmSalonID=-1";
                     streamYazici.WriteLine(yeniSatir);
                 }
                 if (FilmSeansEkle(_yeniFilmID, yeniFilm.FilmSeanslar))
@@ -169,7 +172,7 @@ namespace SinemaYonetimSistemi.Siniflar
                 Directory.CreateDirectory(kayitDizini);
                 using (var streamYazici = new StreamWriter(dosyaYolu, append: true, Encoding.UTF8))
                 {
-                    string yeniSatir = "FilmID=" + yeniFilmID.ToString();
+                    string yeniSatir = "FilmID=" + _yeniFilmID.ToString();
                     for (int i = 0; i < yeniFilmSeanslar.Count; i++)
                     {
                         yeniSatir += ";" + yeniFilmSeanslar[i];
@@ -182,6 +185,73 @@ namespace SinemaYonetimSistemi.Siniflar
             {
                 return false;
             }
+        }
+        public bool FilmSil(int filmID)
+        {
+            try
+            {
+                string calismaDizini = AppDomain.CurrentDomain.BaseDirectory;
+                string kayitDizini = Path.Combine(calismaDizini, "Kayitlar");
+                string dosyaYolu = Path.Combine(kayitDizini, "filmler.txt");
+                if (File.Exists(dosyaYolu) == true)
+                {
+                    var satirlar = File.ReadAllLines(dosyaYolu).ToList();
+                    satirlar.RemoveAll(line =>
+                    {
+                        if (string.IsNullOrWhiteSpace(line)) return false;
+                        var parcalar = line.Split(';', StringSplitOptions.RemoveEmptyEntries);
+
+                        foreach (var parca in parcalar)
+                        {
+                            var kv = parca.Split('=', 2);
+                            if (kv.Length == 2 && kv[0].Trim() == "FilmID")
+                            {
+                                return Convert.ToInt32(kv[1].Trim()) == filmID;
+                            }
+                        }
+                        return false;
+                    });
+                    File.WriteAllLines(dosyaYolu, satirlar);
+                    SalonlariOku();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool FilmGuncelle(Film film, int salonID)
+        {
+            string calismaDizini = AppDomain.CurrentDomain.BaseDirectory;
+            string kayitDizini = Path.Combine(calismaDizini, "Kayitlar");
+            string dosyaYolu = Path.Combine(kayitDizini, "filmler.txt");
+            if (File.Exists(dosyaYolu) == true)
+            {
+                using (var streamOkuyucu = new StreamReader(dosyaYolu, Encoding.UTF8))
+                {
+                    string satir = string.Empty;
+                    while ((satir = streamOkuyucu.ReadLine()) != null)
+                    {
+                        if (string.IsNullOrWhiteSpace(satir))
+                            continue;
+                        var satirParcalari = satir.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                        for (int i = 0; i < satirParcalari.Length; i++)
+                        {
+                            int satirFilmID = Convert.ToInt32(satirParcalari[0].Split('=', 2)[1]);
+                            if (satirFilmID == film.FilmID)
+                            {
+                                Console.WriteLine(satirParcalari[i]);
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
         }
         public List<Salon> SalonlariOku()
         {
@@ -256,7 +326,6 @@ namespace SinemaYonetimSistemi.Siniflar
                 return false;
             }
         }
-        
         public bool SalonSil(int salonID)
         {
             try
@@ -292,6 +361,91 @@ namespace SinemaYonetimSistemi.Siniflar
                 }
             }
             catch { 
+                return false;
+            }
+        }
+        public bool SalonSec(Film film,int salonID)
+        {
+            try
+            {
+                film.SalonID = salonID;
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
+
+        public bool BiletSat(string bilet)
+        {
+            try
+            {
+                string calismaDizini = AppDomain.CurrentDomain.BaseDirectory;
+                string kayitDizini = Path.Combine(calismaDizini, "Kayitlar");
+                string dosyaYolu = Path.Combine(kayitDizini, "biletler.txt");
+                Directory.CreateDirectory(kayitDizini);
+                using (var streamYazici = new StreamWriter(dosyaYolu, append: true, Encoding.UTF8))
+                {
+                    streamYazici.WriteLine(bilet);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        
+        public List<string> BiletOku()
+        {
+            var biletler = new List<string>();
+            try
+            {
+                string calismaDizini = AppDomain.CurrentDomain.BaseDirectory;
+                string kayitDizini = Path.Combine(calismaDizini, "Kayitlar");
+                string dosyaYolu = Path.Combine(kayitDizini, "biletler.txt");
+                if (File.Exists(dosyaYolu) == true)
+                {
+                    using (var streamOkuyucu = new StreamReader(dosyaYolu, Encoding.UTF8))
+                    {
+                        string satir = string.Empty;
+                        while ((satir = streamOkuyucu.ReadLine()) != null)
+                        {
+                            if (string.IsNullOrWhiteSpace(satir))
+                                continue;
+                            biletler.Add(satir);
+                        }
+                    }
+                }
+            }
+            catch { }
+            return biletler;
+        }
+
+        public bool BiletSil(string bilet)
+        {
+            try
+            {
+                string calismaDizini = AppDomain.CurrentDomain.BaseDirectory;
+                string kayitDizini = Path.Combine(calismaDizini, "Kayitlar");
+                string dosyaYolu = Path.Combine(kayitDizini, "biletler.txt");
+                if (File.Exists(dosyaYolu) == true)
+                {
+                    var satirlar = File.ReadAllLines(dosyaYolu).ToList();
+                    satirlar = satirlar
+                        .Where(s => !string.Equals(s, bilet, StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+                    File.WriteAllLines(dosyaYolu, satirlar);
+                    BiletOku();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
                 return false;
             }
         }

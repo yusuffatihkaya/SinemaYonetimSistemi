@@ -31,17 +31,22 @@
             ListViewItem listViewItem1 = new ListViewItem("Salon1(ÖN)");
             label1 = new Label();
             tabControlSinemaYonetim = new TabControl();
-            tabPageBiletSatis = new TabPage();
-            listView3 = new ListView();
-            listView2 = new ListView();
-            listView1 = new ListView();
-            tabPageBiletIptal = new TabPage();
-            dataGridView1 = new DataGridView();
-            groupBoxBiletAra = new GroupBox();
-            label27 = new Label();
-            textBoxMusterAdiSoyadi = new TextBox();
-            buttonBiletİptalEt = new Button();
-            label26 = new Label();
+            tabPageSalonYonet = new TabPage();
+            groupBoxSalonSil = new GroupBox();
+            buttonSalonSil = new Button();
+            listBoxSalonlar = new ListBox();
+            groupBoxYeniSalonEkle = new GroupBox();
+            label24 = new Label();
+            numericUpDownSalonSiraKoltukSayisi = new NumericUpDown();
+            numericUpDownSalonSiraSayisi = new NumericUpDown();
+            buttonYeniSalonEkle = new Button();
+            textBoxSalonAdi = new TextBox();
+            label25 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            labelYeniSalonKapasite = new Label();
+            label3 = new Label();
+            label2 = new Label();
             tabPageFilmEkle = new TabPage();
             groupBoxYeniFilmEkle = new GroupBox();
             labelFotograf = new Label();
@@ -74,37 +79,28 @@
             label4 = new Label();
             tabPageFilmYonet = new TabPage();
             groupBoxFilmSil = new GroupBox();
-            labelFilmAdi = new Label();
+            labelFilmFiyat = new Label();
             pictureBoxFilmFotografFilmYonet = new PictureBox();
             buttonFilmSil = new Button();
             label23 = new Label();
-            label22 = new Label();
             checkedListBoxSeanslar = new CheckedListBox();
-            comboBoxSalonlar = new ComboBox();
             label21 = new Label();
             listBoxFilmler = new ListBox();
-            tabPageSalonYonet = new TabPage();
-            groupBoxSalonSil = new GroupBox();
-            buttonSalonSil = new Button();
-            listBoxSalonlar = new ListBox();
-            groupBoxYeniSalonEkle = new GroupBox();
-            label24 = new Label();
-            numericUpDownSalonSiraKoltukSayisi = new NumericUpDown();
-            numericUpDownSalonSiraSayisi = new NumericUpDown();
-            buttonYeniSalonEkle = new Button();
-            textBoxSalonAdi = new TextBox();
-            label25 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            labelYeniSalonKapasite = new Label();
-            label3 = new Label();
-            label2 = new Label();
+            tabPageBiletIptal = new TabPage();
+            listBoxBiletler = new ListBox();
+            buttonBiletİptalEt = new Button();
+            label26 = new Label();
+            tabPageBiletSatis = new TabPage();
+            listViewSeanslar = new ListView();
+            listViewFilmler = new ListView();
+            listViewSalonlar = new ListView();
             tableLayoutPanel1 = new TableLayoutPanel();
             tabControlSinemaYonetim.SuspendLayout();
-            tabPageBiletSatis.SuspendLayout();
-            tabPageBiletIptal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            groupBoxBiletAra.SuspendLayout();
+            tabPageSalonYonet.SuspendLayout();
+            groupBoxSalonSil.SuspendLayout();
+            groupBoxYeniSalonEkle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownSalonSiraKoltukSayisi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownSalonSiraSayisi).BeginInit();
             tabPageFilmEkle.SuspendLayout();
             groupBoxYeniFilmEkle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxFilmFotograf).BeginInit();
@@ -114,11 +110,8 @@
             tabPageFilmYonet.SuspendLayout();
             groupBoxFilmSil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxFilmFotografFilmYonet).BeginInit();
-            tabPageSalonYonet.SuspendLayout();
-            groupBoxSalonSil.SuspendLayout();
-            groupBoxYeniSalonEkle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownSalonSiraKoltukSayisi).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownSalonSiraSayisi).BeginInit();
+            tabPageBiletIptal.SuspendLayout();
+            tabPageBiletSatis.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -135,11 +128,11 @@
             // 
             // tabControlSinemaYonetim
             // 
-            tabControlSinemaYonetim.Controls.Add(tabPageBiletSatis);
-            tabControlSinemaYonetim.Controls.Add(tabPageBiletIptal);
+            tabControlSinemaYonetim.Controls.Add(tabPageSalonYonet);
             tabControlSinemaYonetim.Controls.Add(tabPageFilmEkle);
             tabControlSinemaYonetim.Controls.Add(tabPageFilmYonet);
-            tabControlSinemaYonetim.Controls.Add(tabPageSalonYonet);
+            tabControlSinemaYonetim.Controls.Add(tabPageBiletIptal);
+            tabControlSinemaYonetim.Controls.Add(tabPageBiletSatis);
             tabControlSinemaYonetim.Dock = DockStyle.Fill;
             tabControlSinemaYonetim.Location = new Point(3, 61);
             tabControlSinemaYonetim.Name = "tabControlSinemaYonetim";
@@ -147,117 +140,178 @@
             tabControlSinemaYonetim.Size = new Size(503, 323);
             tabControlSinemaYonetim.TabIndex = 1;
             // 
-            // tabPageBiletSatis
+            // tabPageSalonYonet
             // 
-            tabPageBiletSatis.Controls.Add(listView3);
-            tabPageBiletSatis.Controls.Add(listView2);
-            tabPageBiletSatis.Controls.Add(listView1);
-            tabPageBiletSatis.Location = new Point(4, 23);
-            tabPageBiletSatis.Name = "tabPageBiletSatis";
-            tabPageBiletSatis.Padding = new Padding(3);
-            tabPageBiletSatis.Size = new Size(495, 296);
-            tabPageBiletSatis.TabIndex = 0;
-            tabPageBiletSatis.Text = "Bilet Satış";
-            tabPageBiletSatis.UseVisualStyleBackColor = true;
+            tabPageSalonYonet.Controls.Add(groupBoxSalonSil);
+            tabPageSalonYonet.Controls.Add(groupBoxYeniSalonEkle);
+            tabPageSalonYonet.Location = new Point(4, 23);
+            tabPageSalonYonet.Name = "tabPageSalonYonet";
+            tabPageSalonYonet.Padding = new Padding(3);
+            tabPageSalonYonet.Size = new Size(495, 296);
+            tabPageSalonYonet.TabIndex = 1;
+            tabPageSalonYonet.Text = "Salon Yönet";
+            tabPageSalonYonet.UseVisualStyleBackColor = true;
             // 
-            // listView3
+            // groupBoxSalonSil
             // 
-            listView3.Location = new Point(9, 237);
-            listView3.Name = "listView3";
-            listView3.Size = new Size(480, 44);
-            listView3.TabIndex = 2;
-            listView3.UseCompatibleStateImageBehavior = false;
+            groupBoxSalonSil.Controls.Add(buttonSalonSil);
+            groupBoxSalonSil.Controls.Add(listBoxSalonlar);
+            groupBoxSalonSil.Location = new Point(13, 118);
+            groupBoxSalonSil.Name = "groupBoxSalonSil";
+            groupBoxSalonSil.Size = new Size(469, 167);
+            groupBoxSalonSil.TabIndex = 3;
+            groupBoxSalonSil.TabStop = false;
+            groupBoxSalonSil.Text = "Salon Sil";
             // 
-            // listView2
+            // buttonSalonSil
             // 
-            listView2.Location = new Point(9, 73);
-            listView2.Name = "listView2";
-            listView2.Size = new Size(480, 158);
-            listView2.TabIndex = 1;
-            listView2.UseCompatibleStateImageBehavior = false;
+            buttonSalonSil.Location = new Point(399, 38);
+            buttonSalonSil.Name = "buttonSalonSil";
+            buttonSalonSil.Size = new Size(52, 102);
+            buttonSalonSil.TabIndex = 5;
+            buttonSalonSil.Text = "Sil";
+            buttonSalonSil.UseVisualStyleBackColor = true;
+            buttonSalonSil.Click += buttonSalonSil_Click;
             // 
-            // listView1
+            // listBoxSalonlar
             // 
-            listView1.Items.AddRange(new ListViewItem[] { listViewItem1 });
-            listView1.Location = new Point(9, 6);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(480, 61);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Tile;
+            listBoxSalonlar.FormattingEnabled = true;
+            listBoxSalonlar.Location = new Point(20, 38);
+            listBoxSalonlar.Name = "listBoxSalonlar";
+            listBoxSalonlar.Size = new Size(373, 102);
+            listBoxSalonlar.TabIndex = 0;
             // 
-            // tabPageBiletIptal
+            // groupBoxYeniSalonEkle
             // 
-            tabPageBiletIptal.Controls.Add(dataGridView1);
-            tabPageBiletIptal.Controls.Add(groupBoxBiletAra);
-            tabPageBiletIptal.Controls.Add(buttonBiletİptalEt);
-            tabPageBiletIptal.Controls.Add(label26);
-            tabPageBiletIptal.Location = new Point(4, 24);
-            tabPageBiletIptal.Name = "tabPageBiletIptal";
-            tabPageBiletIptal.Size = new Size(495, 295);
-            tabPageBiletIptal.TabIndex = 4;
-            tabPageBiletIptal.Text = "Bilet İptal";
-            tabPageBiletIptal.UseVisualStyleBackColor = true;
+            groupBoxYeniSalonEkle.Controls.Add(label24);
+            groupBoxYeniSalonEkle.Controls.Add(numericUpDownSalonSiraKoltukSayisi);
+            groupBoxYeniSalonEkle.Controls.Add(numericUpDownSalonSiraSayisi);
+            groupBoxYeniSalonEkle.Controls.Add(buttonYeniSalonEkle);
+            groupBoxYeniSalonEkle.Controls.Add(textBoxSalonAdi);
+            groupBoxYeniSalonEkle.Controls.Add(label25);
+            groupBoxYeniSalonEkle.Controls.Add(label6);
+            groupBoxYeniSalonEkle.Controls.Add(label5);
+            groupBoxYeniSalonEkle.Controls.Add(labelYeniSalonKapasite);
+            groupBoxYeniSalonEkle.Controls.Add(label3);
+            groupBoxYeniSalonEkle.Controls.Add(label2);
+            groupBoxYeniSalonEkle.Location = new Point(13, 9);
+            groupBoxYeniSalonEkle.Name = "groupBoxYeniSalonEkle";
+            groupBoxYeniSalonEkle.Size = new Size(469, 103);
+            groupBoxYeniSalonEkle.TabIndex = 2;
+            groupBoxYeniSalonEkle.TabStop = false;
+            groupBoxYeniSalonEkle.Text = "Yeni Salon Ekle";
             // 
-            // dataGridView1
+            // label24
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(14, 46);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(460, 151);
-            dataGridView1.TabIndex = 6;
+            label24.AutoSize = true;
+            label24.Location = new Point(159, 32);
+            label24.Name = "label24";
+            label24.Size = new Size(114, 14);
+            label24.TabIndex = 7;
+            label24.Text = "Sıra Koltuk Sayısı";
             // 
-            // groupBoxBiletAra
+            // numericUpDownSalonSiraKoltukSayisi
             // 
-            groupBoxBiletAra.Controls.Add(label27);
-            groupBoxBiletAra.Controls.Add(textBoxMusterAdiSoyadi);
-            groupBoxBiletAra.Location = new Point(14, 216);
-            groupBoxBiletAra.Name = "groupBoxBiletAra";
-            groupBoxBiletAra.Size = new Size(300, 70);
-            groupBoxBiletAra.TabIndex = 5;
-            groupBoxBiletAra.TabStop = false;
-            groupBoxBiletAra.Text = "Bilet Ara";
+            numericUpDownSalonSiraKoltukSayisi.Font = new Font("Verdana", 9F);
+            numericUpDownSalonSiraKoltukSayisi.Location = new Point(297, 30);
+            numericUpDownSalonSiraKoltukSayisi.Name = "numericUpDownSalonSiraKoltukSayisi";
+            numericUpDownSalonSiraKoltukSayisi.Size = new Size(44, 22);
+            numericUpDownSalonSiraKoltukSayisi.TabIndex = 6;
+            numericUpDownSalonSiraKoltukSayisi.TextAlign = HorizontalAlignment.Center;
+            numericUpDownSalonSiraKoltukSayisi.ValueChanged += numericUpDownSalonSiraSayisi_ValueChanged;
+            numericUpDownSalonSiraKoltukSayisi.KeyDown += numericUpDownSalonFiyatHesapla_KeyDown;
+            numericUpDownSalonSiraKoltukSayisi.Leave += numericUpDownSalonSiraSayisi_Leave;
             // 
-            // label27
+            // numericUpDownSalonSiraSayisi
             // 
-            label27.AutoSize = true;
-            label27.Location = new Point(16, 33);
-            label27.Name = "label27";
-            label27.Size = new Size(140, 14);
-            label27.TabIndex = 4;
-            label27.Text = "Müşteri Adı&&Soyadı  :";
+            numericUpDownSalonSiraSayisi.Font = new Font("Verdana", 9F);
+            numericUpDownSalonSiraSayisi.Location = new Point(109, 30);
+            numericUpDownSalonSiraSayisi.Name = "numericUpDownSalonSiraSayisi";
+            numericUpDownSalonSiraSayisi.Size = new Size(44, 22);
+            numericUpDownSalonSiraSayisi.TabIndex = 6;
+            numericUpDownSalonSiraSayisi.TextAlign = HorizontalAlignment.Center;
+            numericUpDownSalonSiraSayisi.ValueChanged += numericUpDownSalonSiraSayisi_ValueChanged;
+            numericUpDownSalonSiraSayisi.KeyDown += numericUpDownSalonFiyatHesapla_KeyDown;
+            numericUpDownSalonSiraSayisi.Leave += numericUpDownSalonSiraSayisi_Leave;
             // 
-            // textBoxMusterAdiSoyadi
+            // buttonYeniSalonEkle
             // 
-            textBoxMusterAdiSoyadi.Location = new Point(167, 30);
-            textBoxMusterAdiSoyadi.Name = "textBoxMusterAdiSoyadi";
-            textBoxMusterAdiSoyadi.Size = new Size(115, 22);
-            textBoxMusterAdiSoyadi.TabIndex = 3;
+            buttonYeniSalonEkle.Location = new Point(368, 30);
+            buttonYeniSalonEkle.Name = "buttonYeniSalonEkle";
+            buttonYeniSalonEkle.Size = new Size(83, 58);
+            buttonYeniSalonEkle.TabIndex = 5;
+            buttonYeniSalonEkle.Text = "Ekle";
+            buttonYeniSalonEkle.UseVisualStyleBackColor = true;
+            buttonYeniSalonEkle.Click += buttonYeniSalonEkle_Click;
             // 
-            // buttonBiletİptalEt
+            // textBoxSalonAdi
             // 
-            buttonBiletİptalEt.Location = new Point(361, 225);
-            buttonBiletİptalEt.Name = "buttonBiletİptalEt";
-            buttonBiletİptalEt.Size = new Size(113, 61);
-            buttonBiletİptalEt.TabIndex = 2;
-            buttonBiletİptalEt.Text = "Bilet İptal";
-            buttonBiletİptalEt.UseVisualStyleBackColor = true;
+            textBoxSalonAdi.Location = new Point(109, 66);
+            textBoxSalonAdi.Name = "textBoxSalonAdi";
+            textBoxSalonAdi.Size = new Size(114, 22);
+            textBoxSalonAdi.TabIndex = 4;
             // 
-            // label26
+            // label25
             // 
-            label26.AutoSize = true;
-            label26.Location = new Point(14, 18);
-            label26.Name = "label26";
-            label26.Size = new Size(102, 14);
-            label26.TabIndex = 1;
-            label26.Text = "Satılan Biletler;";
+            label25.AutoSize = true;
+            label25.Location = new Point(279, 32);
+            label25.Name = "label25";
+            label25.Size = new Size(12, 14);
+            label25.TabIndex = 3;
+            label25.Text = ":";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(91, 32);
+            label6.Name = "label6";
+            label6.Size = new Size(12, 14);
+            label6.TabIndex = 3;
+            label6.Text = ":";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(91, 69);
+            label5.Name = "label5";
+            label5.Size = new Size(12, 14);
+            label5.TabIndex = 2;
+            label5.Text = ":";
+            // 
+            // labelYeniSalonKapasite
+            // 
+            labelYeniSalonKapasite.AutoSize = true;
+            labelYeniSalonKapasite.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
+            labelYeniSalonKapasite.Location = new Point(239, 69);
+            labelYeniSalonKapasite.Name = "labelYeniSalonKapasite";
+            labelYeniSalonKapasite.Size = new Size(17, 13);
+            labelYeniSalonKapasite.TabIndex = 1;
+            labelYeniSalonKapasite.Text = "[]";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(20, 32);
+            label3.Name = "label3";
+            label3.Size = new Size(71, 14);
+            label3.TabIndex = 1;
+            label3.Text = "Sıra Sayısı";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(20, 69);
+            label2.Name = "label2";
+            label2.Size = new Size(65, 14);
+            label2.TabIndex = 0;
+            label2.Text = "Salon Adı";
             // 
             // tabPageFilmEkle
             // 
             tabPageFilmEkle.Controls.Add(groupBoxYeniFilmEkle);
-            tabPageFilmEkle.Location = new Point(4, 24);
+            tabPageFilmEkle.Location = new Point(4, 23);
             tabPageFilmEkle.Name = "tabPageFilmEkle";
-            tabPageFilmEkle.Size = new Size(495, 295);
+            tabPageFilmEkle.Size = new Size(495, 296);
             tabPageFilmEkle.TabIndex = 2;
             tabPageFilmEkle.Text = "Yeni Film Ekle";
             tabPageFilmEkle.UseVisualStyleBackColor = true;
@@ -437,6 +491,7 @@
             // numericUpDownImdb
             // 
             numericUpDownImdb.Location = new Point(144, 138);
+            numericUpDownImdb.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDownImdb.Name = "numericUpDownImdb";
             numericUpDownImdb.Size = new Size(76, 22);
             numericUpDownImdb.TabIndex = 14;
@@ -447,6 +502,7 @@
             // 
             numericUpDownFiyat.DecimalPlaces = 2;
             numericUpDownFiyat.Location = new Point(144, 82);
+            numericUpDownFiyat.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numericUpDownFiyat.Name = "numericUpDownFiyat";
             numericUpDownFiyat.Size = new Size(76, 22);
             numericUpDownFiyat.TabIndex = 13;
@@ -456,6 +512,7 @@
             // numericUpDownSure
             // 
             numericUpDownSure.Location = new Point(144, 110);
+            numericUpDownSure.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numericUpDownSure.Name = "numericUpDownSure";
             numericUpDownSure.Size = new Size(76, 22);
             numericUpDownSure.TabIndex = 13;
@@ -567,18 +624,16 @@
             tabPageFilmYonet.Name = "tabPageFilmYonet";
             tabPageFilmYonet.Size = new Size(495, 295);
             tabPageFilmYonet.TabIndex = 3;
-            tabPageFilmYonet.Text = "Film Yönet";
+            tabPageFilmYonet.Text = "Film Sil";
             tabPageFilmYonet.UseVisualStyleBackColor = true;
             // 
             // groupBoxFilmSil
             // 
-            groupBoxFilmSil.Controls.Add(labelFilmAdi);
+            groupBoxFilmSil.Controls.Add(labelFilmFiyat);
             groupBoxFilmSil.Controls.Add(pictureBoxFilmFotografFilmYonet);
             groupBoxFilmSil.Controls.Add(buttonFilmSil);
             groupBoxFilmSil.Controls.Add(label23);
-            groupBoxFilmSil.Controls.Add(label22);
             groupBoxFilmSil.Controls.Add(checkedListBoxSeanslar);
-            groupBoxFilmSil.Controls.Add(comboBoxSalonlar);
             groupBoxFilmSil.Controls.Add(label21);
             groupBoxFilmSil.Controls.Add(listBoxFilmler);
             groupBoxFilmSil.Location = new Point(5, 3);
@@ -588,20 +643,20 @@
             groupBoxFilmSil.TabStop = false;
             groupBoxFilmSil.Text = "Film Yönet";
             // 
-            // labelFilmAdi
+            // labelFilmFiyat
             // 
-            labelFilmAdi.AutoSize = true;
-            labelFilmAdi.Location = new Point(333, 41);
-            labelFilmAdi.Name = "labelFilmAdi";
-            labelFilmAdi.Size = new Size(17, 14);
-            labelFilmAdi.TabIndex = 23;
-            labelFilmAdi.Text = "[]";
+            labelFilmFiyat.AutoSize = true;
+            labelFilmFiyat.Location = new Point(333, 24);
+            labelFilmFiyat.Name = "labelFilmFiyat";
+            labelFilmFiyat.Size = new Size(17, 14);
+            labelFilmFiyat.TabIndex = 23;
+            labelFilmFiyat.Text = "[]";
             // 
             // pictureBoxFilmFotografFilmYonet
             // 
             pictureBoxFilmFotografFilmYonet.BackColor = Color.Silver;
             pictureBoxFilmFotografFilmYonet.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxFilmFotografFilmYonet.Location = new Point(333, 70);
+            pictureBoxFilmFotografFilmYonet.Location = new Point(333, 42);
             pictureBoxFilmFotografFilmYonet.Name = "pictureBoxFilmFotografFilmYonet";
             pictureBoxFilmFotografFilmYonet.Size = new Size(146, 199);
             pictureBoxFilmFotografFilmYonet.TabIndex = 22;
@@ -611,44 +666,29 @@
             // 
             buttonFilmSil.Location = new Point(16, 247);
             buttonFilmSil.Name = "buttonFilmSil";
-            buttonFilmSil.Size = new Size(145, 23);
+            buttonFilmSil.Size = new Size(463, 23);
             buttonFilmSil.TabIndex = 6;
             buttonFilmSil.Text = "Film Sil";
             buttonFilmSil.UseVisualStyleBackColor = true;
+            buttonFilmSil.Click += buttonFilmSil_Click;
             // 
             // label23
             // 
             label23.AutoSize = true;
-            label23.Location = new Point(184, 78);
+            label23.Location = new Point(184, 24);
             label23.Name = "label23";
-            label23.Size = new Size(76, 14);
+            label23.Size = new Size(67, 14);
             label23.TabIndex = 5;
-            label23.Text = "Seans seç;";
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Location = new Point(184, 24);
-            label22.Name = "label22";
-            label22.Size = new Size(72, 14);
-            label22.TabIndex = 4;
-            label22.Text = "Salon seç;";
+            label23.Text = "Seanslar;";
             // 
             // checkedListBoxSeanslar
             // 
             checkedListBoxSeanslar.FormattingEnabled = true;
-            checkedListBoxSeanslar.Location = new Point(184, 95);
+            checkedListBoxSeanslar.Location = new Point(184, 52);
             checkedListBoxSeanslar.Name = "checkedListBoxSeanslar";
-            checkedListBoxSeanslar.Size = new Size(120, 174);
+            checkedListBoxSeanslar.Size = new Size(120, 157);
             checkedListBoxSeanslar.TabIndex = 3;
-            // 
-            // comboBoxSalonlar
-            // 
-            comboBoxSalonlar.FormattingEnabled = true;
-            comboBoxSalonlar.Location = new Point(184, 41);
-            comboBoxSalonlar.Name = "comboBoxSalonlar";
-            comboBoxSalonlar.Size = new Size(121, 22);
-            comboBoxSalonlar.TabIndex = 2;
+            checkedListBoxSeanslar.SelectedIndexChanged += checkedListBoxSeanslar_SelectedIndexChanged;
             // 
             // label21
             // 
@@ -666,172 +706,94 @@
             listBoxFilmler.Name = "listBoxFilmler";
             listBoxFilmler.Size = new Size(145, 200);
             listBoxFilmler.TabIndex = 0;
+            listBoxFilmler.SelectedIndexChanged += listBoxFilmler_SelectedIndexChanged;
             // 
-            // tabPageSalonYonet
+            // tabPageBiletIptal
             // 
-            tabPageSalonYonet.Controls.Add(groupBoxSalonSil);
-            tabPageSalonYonet.Controls.Add(groupBoxYeniSalonEkle);
-            tabPageSalonYonet.Location = new Point(4, 23);
-            tabPageSalonYonet.Name = "tabPageSalonYonet";
-            tabPageSalonYonet.Padding = new Padding(3);
-            tabPageSalonYonet.Size = new Size(495, 296);
-            tabPageSalonYonet.TabIndex = 1;
-            tabPageSalonYonet.Text = "Salon Yönet";
-            tabPageSalonYonet.UseVisualStyleBackColor = true;
+            tabPageBiletIptal.Controls.Add(listBoxBiletler);
+            tabPageBiletIptal.Controls.Add(buttonBiletİptalEt);
+            tabPageBiletIptal.Controls.Add(label26);
+            tabPageBiletIptal.Location = new Point(4, 24);
+            tabPageBiletIptal.Name = "tabPageBiletIptal";
+            tabPageBiletIptal.Size = new Size(495, 295);
+            tabPageBiletIptal.TabIndex = 4;
+            tabPageBiletIptal.Text = "Bilet İptal";
+            tabPageBiletIptal.UseVisualStyleBackColor = true;
             // 
-            // groupBoxSalonSil
+            // listBoxBiletler
             // 
-            groupBoxSalonSil.Controls.Add(buttonSalonSil);
-            groupBoxSalonSil.Controls.Add(listBoxSalonlar);
-            groupBoxSalonSil.Location = new Point(13, 118);
-            groupBoxSalonSil.Name = "groupBoxSalonSil";
-            groupBoxSalonSil.Size = new Size(469, 167);
-            groupBoxSalonSil.TabIndex = 3;
-            groupBoxSalonSil.TabStop = false;
-            groupBoxSalonSil.Text = "Salon Sil";
+            listBoxBiletler.FormattingEnabled = true;
+            listBoxBiletler.Location = new Point(14, 46);
+            listBoxBiletler.Name = "listBoxBiletler";
+            listBoxBiletler.Size = new Size(460, 200);
+            listBoxBiletler.TabIndex = 6;
+            listBoxBiletler.SelectedIndexChanged += listBoxBiletler_SelectedIndexChanged;
             // 
-            // buttonSalonSil
+            // buttonBiletİptalEt
             // 
-            buttonSalonSil.Location = new Point(399, 38);
-            buttonSalonSil.Name = "buttonSalonSil";
-            buttonSalonSil.Size = new Size(52, 102);
-            buttonSalonSil.TabIndex = 5;
-            buttonSalonSil.Text = "Sil";
-            buttonSalonSil.UseVisualStyleBackColor = true;
-            buttonSalonSil.Click += buttonSalonSil_Click;
+            buttonBiletİptalEt.Location = new Point(14, 253);
+            buttonBiletİptalEt.Name = "buttonBiletİptalEt";
+            buttonBiletİptalEt.Size = new Size(460, 38);
+            buttonBiletİptalEt.TabIndex = 2;
+            buttonBiletİptalEt.Text = "Bilet İptal";
+            buttonBiletİptalEt.UseVisualStyleBackColor = true;
+            buttonBiletİptalEt.Click += buttonBiletİptalEt_Click;
             // 
-            // listBoxSalonlar
+            // label26
             // 
-            listBoxSalonlar.FormattingEnabled = true;
-            listBoxSalonlar.Location = new Point(20, 38);
-            listBoxSalonlar.Name = "listBoxSalonlar";
-            listBoxSalonlar.Size = new Size(373, 102);
-            listBoxSalonlar.TabIndex = 0;
+            label26.AutoSize = true;
+            label26.Location = new Point(14, 18);
+            label26.Name = "label26";
+            label26.Size = new Size(102, 14);
+            label26.TabIndex = 1;
+            label26.Text = "Satılan Biletler;";
             // 
-            // groupBoxYeniSalonEkle
+            // tabPageBiletSatis
             // 
-            groupBoxYeniSalonEkle.Controls.Add(label24);
-            groupBoxYeniSalonEkle.Controls.Add(numericUpDownSalonSiraKoltukSayisi);
-            groupBoxYeniSalonEkle.Controls.Add(numericUpDownSalonSiraSayisi);
-            groupBoxYeniSalonEkle.Controls.Add(buttonYeniSalonEkle);
-            groupBoxYeniSalonEkle.Controls.Add(textBoxSalonAdi);
-            groupBoxYeniSalonEkle.Controls.Add(label25);
-            groupBoxYeniSalonEkle.Controls.Add(label6);
-            groupBoxYeniSalonEkle.Controls.Add(label5);
-            groupBoxYeniSalonEkle.Controls.Add(labelYeniSalonKapasite);
-            groupBoxYeniSalonEkle.Controls.Add(label3);
-            groupBoxYeniSalonEkle.Controls.Add(label2);
-            groupBoxYeniSalonEkle.Location = new Point(13, 9);
-            groupBoxYeniSalonEkle.Name = "groupBoxYeniSalonEkle";
-            groupBoxYeniSalonEkle.Size = new Size(469, 103);
-            groupBoxYeniSalonEkle.TabIndex = 2;
-            groupBoxYeniSalonEkle.TabStop = false;
-            groupBoxYeniSalonEkle.Text = "Yeni Salon Ekle";
+            tabPageBiletSatis.Controls.Add(listViewSeanslar);
+            tabPageBiletSatis.Controls.Add(listViewFilmler);
+            tabPageBiletSatis.Controls.Add(listViewSalonlar);
+            tabPageBiletSatis.Location = new Point(4, 24);
+            tabPageBiletSatis.Name = "tabPageBiletSatis";
+            tabPageBiletSatis.Padding = new Padding(3);
+            tabPageBiletSatis.Size = new Size(495, 295);
+            tabPageBiletSatis.TabIndex = 0;
+            tabPageBiletSatis.Text = "Bilet Satış";
+            tabPageBiletSatis.UseVisualStyleBackColor = true;
             // 
-            // label24
+            // listViewSeanslar
             // 
-            label24.AutoSize = true;
-            label24.Location = new Point(159, 32);
-            label24.Name = "label24";
-            label24.Size = new Size(114, 14);
-            label24.TabIndex = 7;
-            label24.Text = "Sıra Koltuk Sayısı";
+            listViewSeanslar.Location = new Point(9, 237);
+            listViewSeanslar.MultiSelect = false;
+            listViewSeanslar.Name = "listViewSeanslar";
+            listViewSeanslar.Size = new Size(480, 44);
+            listViewSeanslar.TabIndex = 2;
+            listViewSeanslar.UseCompatibleStateImageBehavior = false;
+            listViewSeanslar.ColumnClick += listViewSeanslar_ColumnClick;
+            listViewSeanslar.ItemSelectionChanged += listViewSeanslar_ItemSelectionChanged;
+            listViewSeanslar.SelectedIndexChanged += listViewSeanslar_SelectedIndexChanged;
             // 
-            // numericUpDownSalonSiraKoltukSayisi
+            // listViewFilmler
             // 
-            numericUpDownSalonSiraKoltukSayisi.Font = new Font("Verdana", 9F);
-            numericUpDownSalonSiraKoltukSayisi.Location = new Point(297, 30);
-            numericUpDownSalonSiraKoltukSayisi.Name = "numericUpDownSalonSiraKoltukSayisi";
-            numericUpDownSalonSiraKoltukSayisi.Size = new Size(44, 22);
-            numericUpDownSalonSiraKoltukSayisi.TabIndex = 6;
-            numericUpDownSalonSiraKoltukSayisi.TextAlign = HorizontalAlignment.Center;
-            numericUpDownSalonSiraKoltukSayisi.ValueChanged += numericUpDownSalonSiraSayisi_ValueChanged;
-            numericUpDownSalonSiraKoltukSayisi.KeyDown += numericUpDownSalonFiyatHesapla_KeyDown;
-            numericUpDownSalonSiraKoltukSayisi.Leave += numericUpDownSalonSiraSayisi_Leave;
+            listViewFilmler.Location = new Point(9, 73);
+            listViewFilmler.MultiSelect = false;
+            listViewFilmler.Name = "listViewFilmler";
+            listViewFilmler.Size = new Size(480, 158);
+            listViewFilmler.TabIndex = 1;
+            listViewFilmler.UseCompatibleStateImageBehavior = false;
+            listViewFilmler.SelectedIndexChanged += listViewFilmler_SelectedIndexChanged;
             // 
-            // numericUpDownSalonSiraSayisi
+            // listViewSalonlar
             // 
-            numericUpDownSalonSiraSayisi.Font = new Font("Verdana", 9F);
-            numericUpDownSalonSiraSayisi.Location = new Point(109, 30);
-            numericUpDownSalonSiraSayisi.Name = "numericUpDownSalonSiraSayisi";
-            numericUpDownSalonSiraSayisi.Size = new Size(44, 22);
-            numericUpDownSalonSiraSayisi.TabIndex = 6;
-            numericUpDownSalonSiraSayisi.TextAlign = HorizontalAlignment.Center;
-            numericUpDownSalonSiraSayisi.ValueChanged += numericUpDownSalonSiraSayisi_ValueChanged;
-            numericUpDownSalonSiraSayisi.KeyDown += numericUpDownSalonFiyatHesapla_KeyDown;
-            numericUpDownSalonSiraSayisi.Leave += numericUpDownSalonSiraSayisi_Leave;
-            // 
-            // buttonYeniSalonEkle
-            // 
-            buttonYeniSalonEkle.Location = new Point(368, 30);
-            buttonYeniSalonEkle.Name = "buttonYeniSalonEkle";
-            buttonYeniSalonEkle.Size = new Size(83, 58);
-            buttonYeniSalonEkle.TabIndex = 5;
-            buttonYeniSalonEkle.Text = "Ekle";
-            buttonYeniSalonEkle.UseVisualStyleBackColor = true;
-            buttonYeniSalonEkle.Click += buttonYeniSalonEkle_Click;
-            // 
-            // textBoxSalonAdi
-            // 
-            textBoxSalonAdi.Location = new Point(109, 66);
-            textBoxSalonAdi.Name = "textBoxSalonAdi";
-            textBoxSalonAdi.Size = new Size(114, 22);
-            textBoxSalonAdi.TabIndex = 4;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Location = new Point(279, 32);
-            label25.Name = "label25";
-            label25.Size = new Size(12, 14);
-            label25.TabIndex = 3;
-            label25.Text = ":";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(91, 32);
-            label6.Name = "label6";
-            label6.Size = new Size(12, 14);
-            label6.TabIndex = 3;
-            label6.Text = ":";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(91, 69);
-            label5.Name = "label5";
-            label5.Size = new Size(12, 14);
-            label5.TabIndex = 2;
-            label5.Text = ":";
-            // 
-            // labelYeniSalonKapasite
-            // 
-            labelYeniSalonKapasite.AutoSize = true;
-            labelYeniSalonKapasite.Font = new Font("Verdana", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 162);
-            labelYeniSalonKapasite.Location = new Point(239, 69);
-            labelYeniSalonKapasite.Name = "labelYeniSalonKapasite";
-            labelYeniSalonKapasite.Size = new Size(17, 13);
-            labelYeniSalonKapasite.TabIndex = 1;
-            labelYeniSalonKapasite.Text = "[]";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(20, 32);
-            label3.Name = "label3";
-            label3.Size = new Size(71, 14);
-            label3.TabIndex = 1;
-            label3.Text = "Sıra Sayısı";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(20, 69);
-            label2.Name = "label2";
-            label2.Size = new Size(65, 14);
-            label2.TabIndex = 0;
-            label2.Text = "Salon Adı";
+            listViewSalonlar.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            listViewSalonlar.Location = new Point(9, 6);
+            listViewSalonlar.MultiSelect = false;
+            listViewSalonlar.Name = "listViewSalonlar";
+            listViewSalonlar.Size = new Size(480, 61);
+            listViewSalonlar.TabIndex = 0;
+            listViewSalonlar.UseCompatibleStateImageBehavior = false;
+            listViewSalonlar.View = View.Tile;
+            listViewSalonlar.SelectedIndexChanged += listViewSalonlar_SelectedIndexChanged;
             // 
             // tableLayoutPanel1
             // 
@@ -855,16 +817,17 @@
             ClientSize = new Size(509, 387);
             Controls.Add(tableLayoutPanel1);
             Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            MaximizeBox = false;
             Name = "FormAna";
-            Text = "Form1";
+            Text = "Sinema Yönetim Sistemi";
             Load += Form1_Load;
             tabControlSinemaYonetim.ResumeLayout(false);
-            tabPageBiletSatis.ResumeLayout(false);
-            tabPageBiletIptal.ResumeLayout(false);
-            tabPageBiletIptal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            groupBoxBiletAra.ResumeLayout(false);
-            groupBoxBiletAra.PerformLayout();
+            tabPageSalonYonet.ResumeLayout(false);
+            groupBoxSalonSil.ResumeLayout(false);
+            groupBoxYeniSalonEkle.ResumeLayout(false);
+            groupBoxYeniSalonEkle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownSalonSiraKoltukSayisi).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownSalonSiraSayisi).EndInit();
             tabPageFilmEkle.ResumeLayout(false);
             groupBoxYeniFilmEkle.ResumeLayout(false);
             groupBoxYeniFilmEkle.PerformLayout();
@@ -876,12 +839,9 @@
             groupBoxFilmSil.ResumeLayout(false);
             groupBoxFilmSil.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxFilmFotografFilmYonet).EndInit();
-            tabPageSalonYonet.ResumeLayout(false);
-            groupBoxSalonSil.ResumeLayout(false);
-            groupBoxYeniSalonEkle.ResumeLayout(false);
-            groupBoxYeniSalonEkle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownSalonSiraKoltukSayisi).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownSalonSiraSayisi).EndInit();
+            tabPageBiletIptal.ResumeLayout(false);
+            tabPageBiletIptal.PerformLayout();
+            tabPageBiletSatis.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
@@ -931,18 +891,16 @@
         private Label label20;
         private TabPage tabPageFilmYonet;
         private GroupBox groupBoxFilmSil;
-        private ComboBox comboBoxSalonlar;
         private Label label21;
         private ListBox listBoxFilmler;
         private CheckedListBox checkedListBoxSeanslar;
         private Label label23;
-        private Label label22;
         private Button buttonFilmSil;
-        private Label labelFilmAdi;
+        private Label labelFilmFiyat;
         private PictureBox pictureBoxFilmFotografFilmYonet;
-        private ListView listView1;
-        private ListView listView2;
-        private ListView listView3;
+        private ListView listViewSalonlar;
+        private ListView listViewFilmler;
+        private ListView listViewSeanslar;
         private TabPage tabPageBiletIptal;
         private Label label24;
         private NumericUpDown numericUpDownSalonSiraKoltukSayisi;
@@ -952,14 +910,11 @@
         private Button buttonBiletİptalEt;
         private Label label26;
         private ListBox listBoxSatilanBiletler;
-        private GroupBox groupBoxBiletAra;
-        private Label label27;
-        private TextBox textBoxMusterAdiSoyadi;
-        private DataGridView dataGridView1;
         private Label label12;
         private Label label28;
         private NumericUpDown numericUpDownFiyat;
         private Label label10;
         private Label labelFotograf;
+        private ListBox listBoxBiletler;
     }
 }
